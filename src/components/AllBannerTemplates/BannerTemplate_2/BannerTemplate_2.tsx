@@ -6,17 +6,14 @@ interface BannerProps {
   cta: string;
   image: string;
   background: string;
-  onEdit: () => void;
 }
 
 const BannerTemplate_2: React.FC<BannerProps> = ({
-  id,
   title,
   description,
   cta,
   image,
   background,
-  onEdit,
 }) => {
   return (
     <div
@@ -40,14 +37,14 @@ const BannerTemplate_2: React.FC<BannerProps> = ({
             {description}
           </p>
         </div>
-        <div className="w-[290px] h-28 overflow-hidden absolute bottom-11 left-9">
-          <img
-            src={image}
-            alt={title}
-            layout="fill"
-            objectFit="cover"
-            className="absolute inset-0 w-full h-full"
-          />
+        <div className="w-[290px] h-28 overflow-hidden absolute bottom-11 left-9 ">
+          {image && (
+            <img
+              src={image}
+              alt="Uploaded"
+              className="w-full h-full object-cover "
+            />
+          )}
         </div>
         <div className="p-2 pb-4 absolute bottom-2 left-8 cursor-pointer">
           <span className="text-slate-700 text-xs ">{cta}</span>

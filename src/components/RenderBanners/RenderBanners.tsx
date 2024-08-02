@@ -3,17 +3,13 @@ import BannerParent_1 from "../AllBannerTemplates/BannerTemplate_1/BannerParent_
 import BannerParent_2 from "../AllBannerTemplates/BannerTemplate_2/BannerParent_2";
 import BannerParent_3 from "../AllBannerTemplates/BannerTemplate_3/BannerParent_3";
 import BannerParent_4 from "../AllBannerTemplates/BannerTemplate_4/BannerParent_4";
-
 interface BannerProps {
   id: number;
   title: string;
   description: string;
   cta: string;
   image: string;
-  isOpen: boolean;
-  onClose: () => void;
   background: string;
-  onEdit: () => void;
 }
 
 const BannerImageComp: React.FC<BannerProps> = ({
@@ -23,11 +19,9 @@ const BannerImageComp: React.FC<BannerProps> = ({
   cta,
   image,
   background,
-  isOpen,
-  onClose,
-  onEdit,
 }) => {
-  const [NumOfBanners, setNumOfBanners] = useState([]);
+  const [numOfBanners, setNumOfBanners] = useState<number>(0);
+
   useEffect(() => {
     const fetchBanners = async () => {
       const response = await fetch("/banners.json");
@@ -50,7 +44,6 @@ const BannerImageComp: React.FC<BannerProps> = ({
           background={background}
         />
       );
-      break;
     case 2:
       return (
         <BannerParent_2
@@ -62,7 +55,6 @@ const BannerImageComp: React.FC<BannerProps> = ({
           background={background}
         />
       );
-      break;
     case 3:
       return (
         <BannerParent_3
@@ -74,7 +66,6 @@ const BannerImageComp: React.FC<BannerProps> = ({
           background={background}
         />
       );
-      break;
     case 4:
       return (
         <BannerParent_4
@@ -86,9 +77,8 @@ const BannerImageComp: React.FC<BannerProps> = ({
           background={background}
         />
       );
-      break;
     default:
-      break;
+      return null;
   }
 };
 
