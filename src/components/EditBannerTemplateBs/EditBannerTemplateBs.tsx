@@ -73,7 +73,7 @@ const EdiBannerTemplate: FC<ModalProps> = ({
     if (componentRef.current === null) {
       return;
     }
-    setLoading(true); // Set loading to true
+    // setLoading(true); // Set loading to true
     toPng(componentRef.current, {
       cacheBust: true,
       width: componentRef.current.offsetWidth * scale,
@@ -93,10 +93,10 @@ const EdiBannerTemplate: FC<ModalProps> = ({
       })
       .catch((err) => {
         console.error("Oops, something went wrong!", err);
-      })
-      .finally(() => {
-        setLoading(false); // Ensure loading is set to false whether success or error
       });
+    // .finally(() => {
+    //   setLoading(false); // Ensure loading is set to false whether success or error
+    // });
   };
 
   // Function to save and close modal
@@ -151,6 +151,17 @@ const EdiBannerTemplate: FC<ModalProps> = ({
         <div className="p-4 flex justify-center flex-col">
           <div className="flex justify-center" ref={componentRef}>
             {children}
+          </div>
+          <div>
+            {loading ? (
+              <div className="text-xs flex justify-center bg-white rounded-sm drop-shadow-md p-1">
+                <span className="">
+                  image is Uploading wait for changes....
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="mt-1">
             <div className="flex gap-2 flex-col">
