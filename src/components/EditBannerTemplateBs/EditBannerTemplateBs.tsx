@@ -29,7 +29,7 @@ const EdiBannerTemplate: FC<ModalProps> = ({
 }) => {
   const { isModalOpen, closeModal } = useModal();
   const componentRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
+ const [loading, setLoading] = useState<boolean>(false);
   // const [downloadLoading,setDownloadLoading]=useState(false)
   const [file, setFile] = useState<File | null>(null);
 
@@ -211,10 +211,13 @@ const EdiBannerTemplate: FC<ModalProps> = ({
             </div>
             <div className="mt-2">
               <button
-                onClick={handleSave}
-                className="bg-slate-500 text-white drop-shadow-lg p-1 rounded-md hover:bg-slate-800 transition-all w-full"
+                onClick={!loading ? handleSave : undefined} // Disable click handler when loading
+                className={`bg-slate-500 text-white drop-shadow-lg p-1 rounded-md hover:bg-slate-800 transition-all
+        ${loading ? "cursor-not-allowed opacity-50" : ""}
+        w-full`}
+                disabled={loading} // Disable button when loading
               >
-                Save Banner
+                {loading ? "Save Banner" : "Save Banner"}
               </button>
             </div>
           </div>
