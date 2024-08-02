@@ -29,6 +29,7 @@ const EdiBannerTemplate: FC<ModalProps> = ({
 }) => {
   const { isModalOpen, closeModal } = useModal();
   const componentRef = useRef<HTMLDivElement>(null);
+  
   const [loading, setLoading] = useState(false);
   // const [downloadLoading,setDownloadLoading]=useState(false)
   const [file, setFile] = useState<File | null>(null);
