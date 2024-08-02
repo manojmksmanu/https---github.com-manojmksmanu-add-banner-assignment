@@ -29,7 +29,6 @@ const EdiBannerTemplate: FC<ModalProps> = ({
 }) => {
   const { isModalOpen, closeModal } = useModal();
   const componentRef = useRef<HTMLDivElement>(null);
-  
   const [loading, setLoading] = useState(false);
   // const [downloadLoading,setDownloadLoading]=useState(false)
   const [file, setFile] = useState<File | null>(null);
@@ -150,16 +149,9 @@ const EdiBannerTemplate: FC<ModalProps> = ({
           </button>
         </div>
         <div className="p-4 flex justify-center flex-col">
-          {loading ? (
-            <div className="h-[400px] flex items-center justify-center bg-slate-500 rounded-md">
-              "Image Uploading"
-            </div>
-          ) : (
-            <div className="flex justify-center" ref={componentRef}>
-              {children}
-            </div>
-          )}
-
+          <div className="flex justify-center" ref={componentRef}>
+            {children}
+          </div>
           <div className="mt-1">
             <div className="flex gap-2 flex-col">
               <label htmlFor="title" className="-mb-2 text-xs">
